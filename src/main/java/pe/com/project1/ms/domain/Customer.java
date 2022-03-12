@@ -2,6 +2,7 @@ package pe.com.project1.ms.domain;
 
 import java.time.LocalDate;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Document(collection = "customers")
 public class Customer {
-
+	@Id
 	private String id;
 	private String names;
 	private String surname;
@@ -28,7 +29,7 @@ public class Customer {
 	}
 
 	public Customer update(Customer customer) {
-		return new Customer(this.id, customer.getNames(), customer.getSurname(), customer.getLastname(),
-				customer.getDni(), customer.getEmail(), customer.getBirthdate(), this.type);
+		return new Customer(id, customer.getNames(), customer.getSurname(), customer.getLastname(),
+				customer.getDni(), customer.getEmail(), customer.getBirthdate(), customer.getType());
 	}
 }

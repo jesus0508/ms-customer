@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class CustomerController {
 	private CustomerService customerService;
 
 	@PostMapping
-	public Mono<Customer> create(Customer customer) {
+	public Mono<Customer> create(@RequestBody Customer customer) {
 		return customerService.save(customer);
 	}
 
@@ -36,7 +37,7 @@ public class CustomerController {
 	}
 
 	@PutMapping("/{id}")
-	public Mono<Customer> update(Customer customer, String id) {
+	public Mono<Customer> update(@RequestBody Customer customer, @PathVariable String id) {
 		return customerService.update(customer, id);
 	}
 }

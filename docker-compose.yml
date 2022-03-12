@@ -4,7 +4,7 @@ services:
     image: mongo
     container_name: mongodb
     hostname: $MONGO_DB_HOST
-    restart: on-failure
+    #restart: on-failure
     ports:
       - "${MONGO_DB_PORT:-27017}:${MONGO_DB_PORT:-27017}"
     environment:
@@ -19,18 +19,18 @@ services:
       - $MONGO_INITDB_SCRIPTS_HOST_PATH:/docker-entrypoint-initdb.d/
     networks:
       - main-network
+    command: ["--bind_ip", "0.0.0.0"]
       
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     image: bootcamp/ms-customer
     container_name: mscustomer
-    restart: on-failure
+    #restart: on-failure
     ports:
       - "${APP_PORT:-8081}:${APP_PORT_CONTAINER:-8081}"
     environment:
       SERVER_PORT: "${APP_PORT}"
+      LOG_PATH: $LOG_PATH
       SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
       SPRING_DATA_MONGODB_HOST: $MONGO_DB_HOST
       SPRING_DATA_MONGODB_PORT: $MONGO_DB_PORT
