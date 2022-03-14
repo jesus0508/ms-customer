@@ -36,7 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
 	public Mono<Customer> update(Customer customer, String id) {
 		return this.findById(id)
 				.map(c -> c.update(customer))
-				.flatMap(c -> this.save(c));
+				.flatMap(this::save);
+	}
+
+	@Override
+	public Mono<Void> deleteById(String id) {
+		return customerRepository.deleteById(id);
 	}
 
 }

@@ -1,6 +1,7 @@
 package pe.com.project1.ms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,5 +40,10 @@ public class CustomerController {
 	@PutMapping("/{id}")
 	public Mono<Customer> update(@RequestBody Customer customer, @PathVariable String id) {
 		return customerService.update(customer, id);
+	}
+	
+	@DeleteMapping("/{id}")
+	public Mono<Void> deleteById(@PathVariable String id) {
+		return customerService.deleteById(id);
 	}
 }

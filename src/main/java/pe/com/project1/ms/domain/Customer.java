@@ -17,19 +17,19 @@ public class Customer {
 	@Id
 	private String id;
 	private String names;
-	private String surname;
-	private String lastname;
+	private String firstSurname;
+	private String lastSurname;
 	private String dni;
 	private String email;
 	private LocalDate birthdate;
-	private String type;
+	private CustomerType customerType;
 
 	public Customer(Customer customer) {
 
 	}
 
 	public Customer update(Customer customer) {
-		return new Customer(id, customer.getNames(), customer.getSurname(), customer.getLastname(),
-				customer.getDni(), customer.getEmail(), customer.getBirthdate(), customer.getType());
+		return new Customer(id, customer.getNames(), customer.getFirstSurname(), customer.getLastSurname(),
+				customer.getDni(), customer.getEmail(), customer.getBirthdate(), customer.getCustomerType());
 	}
 }
