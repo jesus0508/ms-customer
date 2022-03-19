@@ -23,13 +23,4 @@ public class Customer {
 	private String email;
 	private LocalDate birthdate;
 	private CustomerType customerType;
-
-	public Customer(Customer customer) {
-
-	}
-
-	public Customer update(Customer customer) {
-		return new Customer(id, customer.getNames(), customer.getFirstSurname(), customer.getLastSurname(),
-				customer.getDni(), customer.getEmail(), customer.getBirthdate(), customer.getCustomerType());
-	}
 }

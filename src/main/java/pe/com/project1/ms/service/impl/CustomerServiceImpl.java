@@ -35,7 +35,10 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Mono<Customer> update(Customer customer, String id) {
 		return this.findById(id)
-				.map(c -> c.update(customer))
+				.map(existingCustomer -> {
+					customer.setId(existingCustomer.getId());
+					return customer;
+				})
 				.flatMap(this::save);
 	}
 
