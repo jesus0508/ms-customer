@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import lombok.extern.slf4j.Slf4j;
 import pe.com.project1.ms.domain.CustomerType;
@@ -20,8 +21,9 @@ import pe.com.project1.ms.infrastructure.persistence.model.CustomerDao;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-@Slf4j
 @DataMongoTest
+@Slf4j
+@ActiveProfiles("local")
 class CustomerReactiveMongoRepositoryTest {
 
 	@Autowired

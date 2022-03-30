@@ -2,4 +2,4 @@ spring:
   application:
     name: ms-customers
   profiles:
-    active: local
+    active: dev

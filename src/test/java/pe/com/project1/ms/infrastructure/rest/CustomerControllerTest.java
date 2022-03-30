@@ -1,14 +1,5 @@
 package pe.com.project1.ms.infrastructure.rest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
 import pe.com.project1.ms.application.CustomerService;
 import pe.com.project1.ms.domain.Customer;
 import pe.com.project1.ms.domain.CustomerType;
@@ -26,9 +17,17 @@ import pe.com.project1.ms.domain.DocumentType;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
 @WebFluxTest
 @ContextConfiguration(classes = {CustomerHandler.class, CustomerRouter.class})
-class CustomerControllerTest {
+@ActiveProfiles("local")
+class  CustomerControllerTest {
 
 	@Autowired
 	private WebTestClient webTestClient;
