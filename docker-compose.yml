@@ -4,6 +4,7 @@ services:
     build: .
     image: bootcamp/ms-customer
     container_name: mscustomers
+    hostname: MS-CUSTOMERS
     #restart: on-failure
     ports:
       - "${APP_PORT:-8081}:${APP_PORT_CONTAINER:-8081}"
@@ -46,5 +47,4 @@ services:
       
 networks:
   main-network:
-    external:
       name: $NETWORK_NAME
