@@ -1,21 +1,19 @@
-package pe.com.project1.ms.service.impl;
+package pe.com.project1.ms.application.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
+import pe.com.project1.ms.application.CustomerService;
+import pe.com.project1.ms.application.persistence.CustomerRepository;
 import pe.com.project1.ms.domain.Customer;
-import pe.com.project1.ms.repository.CustomerRepository;
-import pe.com.project1.ms.service.CustomerService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Slf4j
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-	@Autowired
-	private CustomerRepository customerRepository;
+	private final CustomerRepository customerRepository;
 
 	@Override
 	public Mono<Customer> save(Customer customer) {
@@ -28,15 +26,21 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public Mono<Customer> findByDocumentNumber(String documentNumber) {
+		return customerRepository.findByDocumentNumber(documentNumber);
+	}
+
+	@Override
 	public Flux<Customer> findAll() {
 		return customerRepository.findAll();
 	}
 
 	@Override
 	public Mono<Customer> update(Customer customer, String id) {
-		return this.findById(id)
-				.map(c -> c.update(customer))
-				.flatMap(this::save);
+		return this.findById(id).map(existingCustomer -> {
+			customer.setId(existingCustomer.getId());
+			return customer;
+		}).flatMap(this::save);
 	}
 
 	@Override

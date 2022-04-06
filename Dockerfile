@@ -5,4 +5,4 @@ RUN addgroup -S bootcampgroup && adduser -S bootcampuser -G bootcampgroup
 RUN mkdir -p /opt/logs/ms-customers
 RUN chown -R bootcampuser:bootcampgroup /opt/logs/ms-customers
 USER bootcampuser:bootcampgroup
-ENTRYPOINT ["java","-jar","/ms-customer.jar"]
+ENTRYPOINT ["java", "-jar", "/ms-customer.jar"]
