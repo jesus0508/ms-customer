@@ -5,7 +5,6 @@ services:
     image: bootcamp/ms-customer
     container_name: mscustomers
     hostname: MS-CUSTOMERS
-    #restart: on-failure
     ports:
       - "${APP_PORT:-8081}:${APP_PORT_CONTAINER:-8081}"
     environment:
@@ -28,7 +27,6 @@ services:
     image: mongo
     container_name: mongodbcustomers
     hostname: $MONGO_DB_HOST
-    #restart: on-failure
     ports:
       - "${MONGO_DB_PORT:-27017}:${MONGO_DB_PORT:-27017}"
     environment:
